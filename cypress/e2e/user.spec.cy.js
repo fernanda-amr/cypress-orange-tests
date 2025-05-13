@@ -1,45 +1,41 @@
 
 import userData from "../fixtures/user-data.json"
+import LoginPage from "../pages/loginPage.js"
+import DashboardPage from "../pages/dashboardPage.js"
+import MenuPage from "../pages/menuPage.js"
+import MyInfoPage from "../pages/myInfoPage.js"
 
-const selectorsList = {
-  usernameField: "[name='username']",
-  passwordField: "[name='password']",
-  loginButton: "[type='submit']",
-  dashboardGrid: ".orangehrm-dashboard-grid",
-  wrongCredentialAlert: "[role='alert']",
-  myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
-  firstNameField: "[name='firstName']",
-  lastNameField: "[name='lastName']",
-  middleNameField: "[name='middleName']",
-  genericField: ".oxd-input--active",
-  dateCloseButton: ".--close",
-  submitButton: "[type='submit']",
-  message: ".oxd-toast-container"
-
-
-}
+const loginPage = new LoginPage()
+const dashboardPage = new DashboardPage()
+const menuPage = new MenuPage()
+const myInfoPage = new MyInfoPage()
 
 describe('Orange HRM Tests', () => {
+
   it.only('User Info Update - Success', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameField).type(userData.userSucess.username)
-    cy.get(selectorsList.passwordField).type(userData.userSucess.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    cy.get(selectorsList.dashboardGrid)
-    cy.get(selectorsList.myInfoButton).click()
-    cy.get(selectorsList.firstNameField).clear().type("FirstNameTest")
-    cy.get(selectorsList.middleNameField).clear().type("MiddleNameTest")
-    cy.get(selectorsList.lastNameField).clear().type("LastNameTest")
-    cy.get(selectorsList.genericField).eq(3).clear().type("EmployeeT")
-    cy.get(selectorsList.genericField).eq(4).clear().type("OtherIdTest")
-    cy.get(selectorsList.genericField).eq(5).clear().type("DriversLicenseTest")
-    cy.get(selectorsList.genericField).eq(6).clear().type("2026-05-05")
-    cy.get(selectorsList.dateCloseButton).click()
-    cy.get(selectorsList.submitButton).eq(0).click()
-    cy.get(selectorsList.message).contains("Successfully Updated")
-    cy.get('.oxd-toast-close')
+    loginPage.accessLoginPage()
+    loginPage.loginWithUser(userData.userSuccess.username, userData.userSuccess.password)
    
+    dashboardPage.checkDashboardPage()
+   
+    menuPage.accessMyInfo()
+   
+    myInfoPage.fillPersonalInfo(1, 2, 3)
+    myInfoPage.fillEmployeeDetails('Idest01', 'Other02', '12345', '2025-11-23')
+    myInfoPage.fillOthers()
+    myInfoPage.saveForm()
+    
+    // menuPage.accessAdmin()
+    // menuPage.accessPin()
+    // menuPage.accessLeave()
+    // menuPage.accessTime()
+    // menuPage.accessRecruitment()
+    // menuPage.accessPerformance()
+    // menuPage.accessDirectory()
+    // menuPage.accessClaim()
+    // menuPage.accessBuzz()
+    // menuPage.accessMyInfo()
+    
 
   })
   it('Login - Fail', () => {
