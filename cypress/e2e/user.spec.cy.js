@@ -25,22 +25,7 @@ describe('Orange HRM Tests', () => {
     myInfoPage.fillOthers()
     myInfoPage.saveForm()
     
-    // menuPage.accessAdmin()
-    // menuPage.accessPin()
-    // menuPage.accessLeave()
-    // menuPage.accessTime()
-    // menuPage.accessRecruitment()
-    // menuPage.accessPerformance()
-    // menuPage.accessDirectory()
-    // menuPage.accessClaim()
-    // menuPage.accessBuzz()
-    // menuPage.accessMyInfo()
-    
-
   })
-  it.only('Login - Fail', () => {
-    loginPage.accessLoginPage()
-    loginPage.loginWithUser(userData.userFail.username, userData.userFail.password)
-    loginPage.checkAccessInvalid()
-  })
+  
+  
 })
