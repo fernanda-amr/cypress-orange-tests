@@ -21,7 +21,7 @@ describe('Orange HRM Tests', () => {
     menuPage.accessMyInfo()
    
     myInfoPage.fillPersonalInfo(1, 2, 3)
-    myInfoPage.fillEmployeeDetails('Idest01', 'Other02', '12345', '2025-11-23')
+    myInfoPage.fillEmployeeDetails('Nickname', 'Idest01', 'Other02', '12345', '2025-11-23', '00', '01')
     myInfoPage.fillOthers()
     myInfoPage.saveForm()
     

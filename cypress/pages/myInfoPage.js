@@ -26,15 +26,15 @@ class MyInfoPage {
         cy.get(this.selectorsList().lastNameField).clear().type(LastName)
     }
 
-    fillEmployeeDetails( EmployeeId, OtherId, DriversLicenseNumber, LicenseExpiryDate, SSNumber, SinNumber){
-        //cy.get(this.selectorsList().genericField).eq(3).clear().type(NickName)
-        cy.get(this.selectorsList().genericField).eq(3).clear().type(EmployeeId)
-        cy.get(this.selectorsList().genericField).eq(4).clear().type(OtherId)
-        cy.get(this.selectorsList().genericField).eq(5).clear().type(DriversLicenseNumber)
-        cy.get(this.selectorsList().genericField).eq(6).clear().type(LicenseExpiryDate)
+    fillEmployeeDetails( Nickname,EmployeeId, OtherId, DriversLicenseNumber, LicenseExpiryDate, SSNumber, SinNumber){
+        cy.get(this.selectorsList().genericField).eq(3).clear().type(Nickname)
+        cy.get(this.selectorsList().genericField).eq(4).clear().type(EmployeeId)
+        cy.get(this.selectorsList().genericField).eq(5).clear().type(OtherId)
+        cy.get(this.selectorsList().genericField).eq(6).clear().type(DriversLicenseNumber)
+        cy.get(this.selectorsList().genericField).eq(7).clear().type(LicenseExpiryDate)
         cy.get(this.selectorsList().dateCloseButton).click()
-        //cy.get(this.selectorsList().genericField).eq(8).clear().type(SSNumber)
-        //cy.get(this.selectorsList().genericField).eq(9).clear().type(SinNumber)
+        cy.get(this.selectorsList().genericField).eq(8).clear().type(SSNumber)
+        cy.get(this.selectorsList().genericField).eq(9).clear().type(SinNumber)
         
     }
 
@@ -43,7 +43,7 @@ class MyInfoPage {
         cy.get(this.selectorsList().itemComboBox).click()
         cy.get(this.selectorsList().genericComboBox).eq(1).click()
         cy.get(this.selectorsList().mariedComboBox).click()
-        cy.get(this.selectorsList().dateOfBirthday).eq(1).clear().click({ force: true }).type('1989-02-02')
+        cy.get(this.selectorsList().genderField).eq(11).clear().click().type('1989-02-02')
 
      }
 
